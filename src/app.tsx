@@ -135,8 +135,9 @@ function Button({
 }: ComponentPropsWithoutRef<"button">) {
   return (
     <button
+      type="button"
       disabled={disabled}
-      className="w-14 py-1 lg:py-2 grow shrink basis-0 text-center font-semibold rounded hover:bg-slate-700 disabled:text-gray-600 disabled:cursor-not-allowed"
+      className="w-14 py-1 lg:py-2 grow shrink basis-0 text-center font-semibold rounded hover:bg-slate-700 disabled:text-slate-800 disabled:cursor-not-allowed"
       {...rest}
     >
       {children}
