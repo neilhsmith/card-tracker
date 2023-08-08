@@ -71,60 +71,58 @@ function App() {
   }
 
   return (
-    <>
-      <div className="h-screen flex flex-col justify-center items-center text-4xl bg-slate-800">
-        <div className="flex flex-col gap-2">
-          <div className="flex lg:flex-col">
-            {SUITS.map((row) => (
-              <div
-                key={row.suit}
-                className={clsx(
-                  row.color,
-                  "flex flex-col lg:flex-row items-center"
-                )}
-              >
-                <div className="mb-6 lg:mb-0 lg:mr-6">{row.icon}</div>
-                {VALUES.map((value) => (
-                  <Button
-                    key={value}
-                    disabled={deactivated.some(
-                      (d) => d.suit === row.suit && d.value === value
-                    )}
-                    onClick={() => deactivateCard(row.suit, value)}
-                  >
-                    {value}
-                  </Button>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 flex justify-end items-center px-4 text-lg text-slate-50">
+    <div className="min-h-screen py-10 flex flex-col justify-center items-center text-2xl lg:text-4xl bg-slate-800">
+      <div className="flex flex-col gap-2">
+        <div className="flex lg:flex-col">
+          {SUITS.map((row) => (
+            <div
+              key={row.suit}
+              className={clsx(
+                row.color,
+                "flex flex-col lg:flex-row items-center"
+              )}
+            >
+              <div className="mb-6 lg:mb-0 lg:mr-6">{row.icon}</div>
+              {VALUES.map((value) => (
+                <Button
+                  key={value}
+                  disabled={deactivated.some(
+                    (d) => d.suit === row.suit && d.value === value
+                  )}
+                  onClick={() => deactivateCard(row.suit, value)}
+                >
+                  {value}
+                </Button>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 flex justify-end items-center px-4 text-lg text-slate-50">
+          <button
+            disabled={deactivated.length === 0}
+            onClick={reset}
+            className="cursor-pointer disabled:text-gray-600 disabled:cursor-not-allowed"
+          >
+            Reset
+          </button>
+          <span className="mx-8">/</span>
+          <div className="flex gap-2">
             <button
-              disabled={deactivated.length === 0}
-              onClick={reset}
+              onClick={undo}
               className="cursor-pointer disabled:text-gray-600 disabled:cursor-not-allowed"
             >
-              Reset
+              Undo
             </button>
-            <span className="mx-8">/</span>
-            <div className="flex gap-2">
-              <button
-                onClick={undo}
-                className="cursor-pointer disabled:text-gray-600 disabled:cursor-not-allowed"
-              >
-                Undo
-              </button>
-              <button
-                onClick={redo}
-                className="cursor-pointer disabled:text-gray-600 disabled:cursor-not-allowed"
-              >
-                Redo
-              </button>
-            </div>
+            <button
+              onClick={redo}
+              className="cursor-pointer disabled:text-gray-600 disabled:cursor-not-allowed"
+            >
+              Redo
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -138,7 +136,7 @@ function Button({
   return (
     <button
       disabled={disabled}
-      className="w-14 py-2 grow shrink basis-0 text-center font-semibold rounded hover:bg-slate-700 disabled:text-gray-600 disabled:cursor-not-allowed"
+      className="w-14 py-1 lg:py-2 grow shrink basis-0 text-center font-semibold rounded hover:bg-slate-700 disabled:text-gray-600 disabled:cursor-not-allowed"
       {...rest}
     >
       {children}
