@@ -73,29 +73,31 @@ function App() {
   return (
     <>
       <div className="h-screen flex flex-col justify-center items-center text-4xl bg-slate-800">
-        <div className="flex lg:flex-col gap-2">
-          {SUITS.map((row) => (
-            <div
-              key={row.suit}
-              className={clsx(
-                row.color,
-                "flex flex-col lg:flex-row items-center"
-              )}
-            >
-              <div className="mb-6 lg:mb-0 lg:mr-6">{row.icon}</div>
-              {VALUES.map((value) => (
-                <Button
-                  key={value}
-                  disabled={deactivated.some(
-                    (d) => d.suit === row.suit && d.value === value
-                  )}
-                  onClick={() => deactivateCard(row.suit, value)}
-                >
-                  {value}
-                </Button>
-              ))}
-            </div>
-          ))}
+        <div className="flex flex-col gap-2">
+          <div className="flex lg:flex-col">
+            {SUITS.map((row) => (
+              <div
+                key={row.suit}
+                className={clsx(
+                  row.color,
+                  "flex flex-col lg:flex-row items-center"
+                )}
+              >
+                <div className="mb-6 lg:mb-0 lg:mr-6">{row.icon}</div>
+                {VALUES.map((value) => (
+                  <Button
+                    key={value}
+                    disabled={deactivated.some(
+                      (d) => d.suit === row.suit && d.value === value
+                    )}
+                    onClick={() => deactivateCard(row.suit, value)}
+                  >
+                    {value}
+                  </Button>
+                ))}
+              </div>
+            ))}
+          </div>
           <div className="mt-6 flex justify-end items-center px-4 text-lg text-slate-50">
             <button
               disabled={deactivated.length === 0}
